@@ -1,4 +1,5 @@
 import { eventoInfo } from "../data/evento";
+import BotaoLembrete from "./BotaoLembrete";
 
 export default function Hero() {
     return (
@@ -28,6 +29,7 @@ export default function Hero() {
                     >
                         Garantir Minha Vaga
                     </a>
+                    <BotaoLembrete />
                 </div>
             </div>
         </section>
