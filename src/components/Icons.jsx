@@ -1,4 +1,4 @@
-export function IconSun({ className = "w-4 h-4" }) {
+export function IconSun({ className = "w-4 h-4", ...props }) {
   return (
     <svg
       className={className}
@@ -9,6 +9,7 @@ export function IconSun({ className = "w-4 h-4" }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      {...props}
     >
       <circle cx="12" cy="12" r="4" />
       <path d="M12 2v2" />
@@ -23,7 +24,7 @@ export function IconSun({ className = "w-4 h-4" }) {
   );
 }
 
-export function IconMoon({ className = "w-4 h-4" }) {
+export function IconMoon({ className = "w-4 h-4", ...props }) {
   return (
     <svg
       className={className}
@@ -34,13 +35,14 @@ export function IconMoon({ className = "w-4 h-4" }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      {...props}
     >
       <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
     </svg>
   );
 }
 
-export function IconMenu({ className = "w-5 h-5" }) {
+export function IconMenu({ className = "w-5 h-5", ...props }) {
   return (
     <svg
       className={className}
@@ -51,6 +53,7 @@ export function IconMenu({ className = "w-5 h-5" }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      {...props}
     >
       <line x1="4" x2="20" y1="6" y2="6" />
       <line x1="4" x2="20" y1="12" y2="12" />
@@ -59,7 +62,7 @@ export function IconMenu({ className = "w-5 h-5" }) {
   );
 }
 
-export function IconClose({ className = "w-5 h-5" }) {
+export function IconClose({ className = "w-5 h-5", ...props }) {
   return (
     <svg
       className={className}
@@ -70,6 +73,7 @@ export function IconClose({ className = "w-5 h-5" }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      {...props}
     >
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
@@ -77,7 +81,7 @@ export function IconClose({ className = "w-5 h-5" }) {
   );
 }
 
-export function IconCalendar({ className = "w-4 h-4" }) {
+export function IconCalendar({ className = "w-4 h-4", ...props }) {
   return (
     <svg
       className={className}
@@ -88,6 +92,7 @@ export function IconCalendar({ className = "w-4 h-4" }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      {...props}
     >
       <rect width="18" height="18" x="3" y="4" rx="2" />
       <path d="M16 2v4" />
@@ -97,7 +102,7 @@ export function IconCalendar({ className = "w-4 h-4" }) {
   );
 }
 
-export function IconMapPin({ className = "w-4 h-4" }) {
+export function IconMapPin({ className = "w-4 h-4", ...props }) {
   return (
     <svg
       className={className}
@@ -108,6 +113,7 @@ export function IconMapPin({ className = "w-4 h-4" }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      {...props}
     >
       <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
       <circle cx="12" cy="10" r="3" />
@@ -115,7 +121,7 @@ export function IconMapPin({ className = "w-4 h-4" }) {
   );
 }
 
-export function IconBell({ className = "w-4 h-4" }) {
+export function IconBell({ className = "w-4 h-4", ...props }) {
   return (
     <svg
       className={className}
@@ -126,6 +132,7 @@ export function IconBell({ className = "w-4 h-4" }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      {...props}
     >
       <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
       <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
@@ -133,7 +140,7 @@ export function IconBell({ className = "w-4 h-4" }) {
   );
 }
 
-export function IconArrowRight({ className = "w-4 h-4" }) {
+export function IconArrowRight({ className = "w-4 h-4", ...props }) {
   return (
     <svg
       className={className}
@@ -144,6 +151,7 @@ export function IconArrowRight({ className = "w-4 h-4" }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      {...props}
     >
       <path d="M5 12h14" />
       <path d="m12 5 7 7-7 7" />
@@ -151,7 +159,7 @@ export function IconArrowRight({ className = "w-4 h-4" }) {
   );
 }
 
-export function IconGamepad({ className = "w-5 h-5" }) {
+export function IconGamepad({ className = "w-5 h-5", ...props }) {
   return (
     <svg
       className={className}
@@ -162,6 +170,7 @@ export function IconGamepad({ className = "w-5 h-5" }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      {...props}
     >
       <line x1="6" x2="10" y1="12" y2="12" />
       <line x1="8" x2="8" y1="10" y2="14" />
@@ -172,7 +181,7 @@ export function IconGamepad({ className = "w-5 h-5" }) {
   );
 }
 
-export function IconChevronDown({ className = "w-4 h-4" }) {
+export function IconChevronDown({ className = "w-4 h-4", ...props }) {
   return (
     <svg
       className={className}
@@ -183,13 +192,14 @@ export function IconChevronDown({ className = "w-4 h-4" }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      {...props}
     >
       <path d="m6 9 6 6 6-6" />
     </svg>
   );
 }
 
-export function IconCheckCircle({ className = "w-8 h-8" }) {
+export function IconCheckCircle({ className = "w-8 h-8", ...props }) {
   return (
     <svg
       className={className}
@@ -200,6 +210,7 @@ export function IconCheckCircle({ className = "w-8 h-8" }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      {...props}
     >
       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
       <polyline points="22 4 12 14.01 9 11.01" />

@@ -28,17 +28,17 @@ function BotaoLembrete() {
   }
 
   return (
-    <div className="w-full sm:w-auto flex flex-col items-center">
+    <div className="w-full sm:w-auto flex flex-col items-start">
       <button
         type="button"
         onClick={ativarLembrete}
-        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan-text)] active:scale-[0.98] text-sm font-medium cursor-pointer"
+        className="btn-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-4 rounded-lg text-sm font-medium cursor-pointer"
       >
-        <IconBell className="w-4 h-4 text-[var(--accent-cyan-text)]" />
+        <IconBell className="w-4 h-4" />
         <span>Me lembre do evento</span>
       </button>
       {mensagem && (
-        <p role="status" className="mt-2.5 text-xs font-medium text-[var(--text-secondary)]">
+        <p role="status" className="mt-2 text-xs font-medium" style={{ color: "var(--text-secondary)" }}>
           {mensagem}
         </p>
       )}

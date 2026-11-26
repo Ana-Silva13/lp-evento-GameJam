@@ -4,39 +4,97 @@ export default function Sobre() {
   return (
     <section
       id="sobre"
-      className="py-16 sm:py-20 px-4 sm:px-6 border-b border-[var(--border-subtle)]"
+      className="py-20 sm:py-28 px-5 sm:px-8 border-b border-[var(--border-subtle)]"
+      style={{ backgroundColor: "var(--bg-page)" }}
     >
-      <div className="max-w-5xl mx-auto">
-        <div className="max-w-3xl mb-12">
-          <p className="text-xs font-mono-tech uppercase tracking-widest text-[var(--accent-cyan-text)] mb-2">
-            O Evento
-          </p>
-          <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-primary)] mb-4">
-            Sobre o Evento
-          </h2>
-          <p className="text-[var(--text-secondary)] leading-relaxed text-base sm:text-lg">
-            {eventoInfo.sobreTexto}
-          </p>
-        </div>
+      <div className="max-w-6xl mx-auto">
+        {/* Asymmetric 2-col layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
-        <div
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5"
-          aria-label="Estatísticas do evento"
-        >
-          {eventoInfo.numeros.map((num, index) => (
-            <div
-              key={index}
-              className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 flex flex-col justify-between hover:border-[var(--border-strong)] transition-colors"
-              style={{ boxShadow: "var(--shadow-card)" }}
+          {/* Left: label + headline */}
+          <div className="lg:col-span-5">
+            <div className="sticky top-24">
+              <p className="section-label mb-3">O Evento</p>
+              <span className="accent-bar mb-6" />
+              <h2
+                className="font-display font-bold leading-tight mb-0"
+                style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--text-primary)" }}
+              >
+                Uma maratona de criação, aprendizado e jogo.
+              </h2>
+            </div>
+          </div>
+
+          {/* Right: text + stats */}
+          <div className="lg:col-span-7">
+            <p
+              className="text-base sm:text-lg leading-relaxed mb-10"
+              style={{ color: "var(--text-secondary)" }}
             >
-              <div className="font-display text-3xl sm:text-4xl font-bold text-[var(--accent-green-text)] mb-1.5">
-                {num.quantidade}
-              </div>
-              <div className="text-xs sm:text-sm font-mono-tech uppercase tracking-wider text-[var(--text-muted)]">
-                {num.rotulo}
+              {eventoInfo.sobreTexto}
+            </p>
+
+            {/* Stats — horizontal editorial strip */}
+            <div
+              className="grid grid-cols-3 border rounded-xl overflow-hidden"
+              style={{ borderColor: "var(--border-subtle)" }}
+              aria-label="Estatísticas do evento"
+            >
+              {eventoInfo.numeros.map((num, index) => (
+                <div
+                  key={index}
+                  className={`p-6 sm:p-8 flex flex-col justify-center ${
+                    index > 0 ? "border-l" : ""
+                  }`}
+                  style={{
+                    borderColor: "var(--border-subtle)",
+                    backgroundColor: index === 0 ? "var(--accent-primary-soft)" : "var(--bg-surface)",
+                  }}
+                >
+                  <div
+                    className="font-display font-bold mb-1"
+                    style={{
+                      fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+                      color: index === 0 ? "var(--accent-primary-text)" : "var(--text-primary)",
+                    }}
+                  >
+                    {num.quantidade}
+                  </div>
+                  <div
+                    className="font-mono-tech text-[11px] uppercase tracking-widest"
+                    style={{ color: "var(--text-muted)" }}
+                  >
+                    {num.rotulo}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Quem pode participar */}
+            <div className="mt-8 p-5 rounded-xl border-l-4" style={{
+              borderLeftColor: "var(--accent-primary)",
+              backgroundColor: "var(--bg-subtle)",
+            }}>
+              <p className="font-mono-tech text-[11px] uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)" }}>
+                Quem pode participar
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {["Programadores", "Artistas", "Músicos", "Designers", "Roteiristas", "Iniciantes"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs px-3 py-1.5 rounded font-medium"
+                    style={{
+                      backgroundColor: "var(--bg-surface)",
+                      border: "1px solid var(--border-strong)",
+                      color: "var(--text-primary)",
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

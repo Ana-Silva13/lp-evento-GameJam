@@ -17,72 +17,137 @@ function Grafico() {
     const ctx = canvas.getContext("2d");
     const isDark = theme === "dark";
 
-    const textColor = isDark ? "#e2e8f0" : "#0f172a";
-    const valueColor = isDark ? "#94a3b8" : "#475569";
-    const trackColor = isDark ? "rgba(148, 163, 184, 0.12)" : "rgba(15, 23, 42, 0.06)";
-    const barColors = isDark
-      ? ["#22c55e", "#06b6d4", "#38bdf8"]
-      : ["#16a34a", "#0891b2", "#0284c7"];
+    const textColor   = isDark ? "#f0eee8" : "#0f0e0b";
+    const valueColor  = isDark ? "#b8b4aa" : "#3d3c38";
+    const trackColor  = isDark ? "rgba(240, 238, 232, 0.07)" : "rgba(15, 14, 11, 0.06)";
+    const barColors   = isDark
+      ? ["#f97316", "#fb923c", "#fdba74"]
+      : ["#c45c00", "#e36b00", "#ea9640"];
 
     const maior = Math.max(...dados.map((d) => d.valor));
-    const maxBarWidth = 210;
+    const maxBarWidth = 200;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.font = "500 13px Inter, sans-serif";
     ctx.textBaseline = "middle";
 
     dados.forEach((item, i) => {
       const largura = (item.valor / maior) * maxBarWidth;
-      const y = 24 + i * 48;
+      const y = 28 + i * 52;
 
+      // Track
       ctx.fillStyle = trackColor;
       ctx.beginPath();
-      ctx.roundRect(112, y, maxBarWidth, 24, 6);
+      ctx.roundRect(120, y, maxBarWidth, 22, 4);
       ctx.fill();
 
+      // Bar
       ctx.fillStyle = barColors[i % barColors.length];
       ctx.beginPath();
-      ctx.roundRect(112, y, largura, 24, 6);
+      ctx.roundRect(120, y, largura, 22, 4);
       ctx.fill();
 
+      // Label
       ctx.fillStyle = textColor;
-      ctx.fillText(item.rotulo, 12, y + 12);
+      ctx.font = "500 12px 'Inter', sans-serif";
+      ctx.fillText(item.rotulo, 0, y + 11);
 
+      // Value
       ctx.fillStyle = valueColor;
-      ctx.fillText(String(item.valor), 112 + largura + 12, y + 12);
+      ctx.font = "600 11px 'JetBrains Mono', monospace";
+      ctx.fillText(String(item.valor), 120 + largura + 10, y + 11);
     });
   }, [theme]);
 
   return (
     <section
       id="grafico"
-      className="py-16 sm:py-20 px-4 sm:px-6 border-b border-[var(--border-subtle)]"
+      className="py-20 sm:py-28 px-5 sm:px-8 border-b border-[var(--border-subtle)]"
+      style={{ backgroundColor: "var(--bg-page)" }}
     >
-      <div className="max-w-5xl mx-auto">
-        <div className="max-w-2xl mb-8">
-          <p className="text-xs font-mono-tech uppercase tracking-widest text-[var(--accent-cyan-text)] mb-2">
-            Panorama
-          </p>
-          <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-primary)] mb-2">
-            Inscrições Confirmadas por Tipo
-          </h2>
-          <p className="text-[var(--text-secondary)] text-sm sm:text-base">
-            Confira a distribuição atual de participantes garantidos para a GameJam OC 48h.
-          </p>
-        </div>
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-        <div
-          className="inline-block rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-4 sm:p-6 max-w-full overflow-x-auto"
-          style={{ boxShadow: "var(--shadow-card)" }}
-        >
-          <canvas
-            ref={canvasRef}
-            width={390}
-            height={172}
-            role="img"
-            aria-label="Gráfico de barras mostrando inscrições por tipo: Participante com 120 inscritos, Com Kit com 80 inscritos e Visitante com 45 inscritos."
-            className="max-w-full block"
-          />
+          {/* Left: headline */}
+          <div className="lg:col-span-5">
+            <p className="section-label mb-3">Panorama</p>
+            <span className="accent-bar mb-6" />
+            <h2
+              className="font-display font-bold leading-tight mb-4"
+              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "var(--text-primary)" }}
+            >
+              Vagas sendo preenchidas em tempo real.
+            </h2>
+            <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+              Acompanhe a distribuição de inscrições confirmadas por tipo de participação.
+            </p>
+
+            {/* Legend */}
+            <div className="mt-8 space-y-2.5">
+              {dados.map((item, i) => {
+                const colors = ["var(--accent-primary-text)", "var(--accent-primary-light)", "var(--text-secondary)"];
+                return (
+                  <div key={item.rotulo} className="flex items-center gap-3">
+                    <span
+                      className="w-3 h-3 rounded-sm shrink-0"
+                      style={{ backgroundColor: colors[i] }}
+                    />
+                    <span className="text-sm" style={{ color: "var(--text-secondary)" }}>
+                      {item.rotulo}
+                    </span>
+                    <span
+                      className="font-mono-tech text-xs ml-auto"
+                      style={{ color: "var(--accent-primary-text)" }}
+                    >
+                      {item.valor}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right: canvas chart */}
+          <div className="lg:col-span-7">
+            <div
+              className="rounded-xl border p-6 sm:p-8"
+              style={{
+                backgroundColor: "var(--bg-surface)",
+                borderColor: "var(--border-subtle)",
+                boxShadow: "var(--shadow-card)",
+              }}
+            >
+              {/* Chart header */}
+              <div
+                className="flex items-center justify-between gap-2 mb-6 pb-4 border-b"
+                style={{ borderColor: "var(--border-subtle)" }}
+              >
+                <span
+                  className="font-mono-tech text-[11px] uppercase tracking-widest"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  Inscrições confirmadas
+                </span>
+                <span
+                  className="font-pixel text-[10px] tracking-wider px-2 py-1 rounded"
+                  style={{
+                    backgroundColor: "var(--accent-primary-soft)",
+                    color: "var(--accent-primary-text)",
+                  }}
+                >
+                  ATUALIZADO
+                </span>
+              </div>
+
+              <canvas
+                ref={canvasRef}
+                width={380}
+                height={190}
+                role="img"
+                aria-label="Gráfico de barras: Participante 120, Com Kit 80, Visitante 45."
+                className="max-w-full block w-full"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
