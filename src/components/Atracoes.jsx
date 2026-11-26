@@ -2,23 +2,35 @@ import { eventoInfo } from "../data/evento";
 import CartaoAtracao from "./CartaoAtracao";
 
 export default function Atracoes() {
-    return (
-        <section id="atracoes" className="py-16 px-4 max-w-5xl mx-auto border-b border-gray-800">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-verde to-ciano">
-                Mentores Confirmados
-            </h2>
-            <p className="text-gray-200 text-sm mb-8">Eles estarão disponíveis durante toda a maratona para ajudar sua equipe.</p>
+  return (
+    <section
+      id="atracoes"
+      className="py-16 sm:py-20 px-4 sm:px-6 border-b border-[var(--border-subtle)]"
+    >
+      <div className="max-w-5xl mx-auto">
+        <div className="max-w-2xl mb-10">
+          <p className="text-xs font-mono-tech uppercase tracking-widest text-[var(--accent-cyan-text)] mb-2">
+            Mentoria
+          </p>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-primary)] mb-2">
+            Mentores Confirmados
+          </h2>
+          <p className="text-[var(--text-secondary)] text-sm sm:text-base">
+            Eles estarão disponíveis durante toda a maratona para ajudar sua equipe.
+          </p>
+        </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6" aria-label="Lista de mentores">
-                {eventoInfo.mentores.map((mentor, index) => (
-                    <CartaoAtracao
-                        key={index}
-                        nome={mentor.nome}
-                        area={mentor.area}
-                        descricao={mentor.descricao}
-                    />
-                ))}
-            </div>
-        </section>
-    );
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5" aria-label="Lista de mentores">
+          {eventoInfo.mentores.map((mentor, index) => (
+            <CartaoAtracao
+              key={index}
+              nome={mentor.nome}
+              area={mentor.area}
+              descricao={mentor.descricao}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
